@@ -396,21 +396,6 @@
             white-space: pre-wrap;
         }
 
-        .spinner {
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
-            display: inline-block;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: 1fr;
@@ -511,15 +496,12 @@
                 emails = [];
                 updateEmailList();
                 
-                // 10분 타이머 시작
                 expiryTime = Date.now() + (10 * 60 * 1000);
                 startTimer();
                 
-                // 자동 새로고침 시작 (5초마다)
                 if (refreshInterval) clearInterval(refreshInterval);
                 refreshInterval = setInterval(refreshEmails, 5000);
                 
-                // 즉시 한번 새로고침
                 refreshEmails();
                 
                 alert('임시 이메일이 생성되었습니다!\n\n' + currentEmail + '\n\n게임 가입 시 이 이메일을 사용하세요.');
@@ -582,7 +564,6 @@
                 
                 const body = data.textBody || data.body || '';
                 
-                // 인증 코드 찾기 (6자리 숫자)
                 const codeMatch = body.match(/\b\d{6}\b/);
                 const verificationCode = codeMatch ? codeMatch[0] : null;
                 
